@@ -3,6 +3,11 @@ const jestExpoPreset = require('jest-expo/jest-preset');
 /** @type {import('jest').Config} */
 module.exports = {
   ...jestExpoPreset,
+  resolver: require.resolve('react-native-reanimated/jest/resolver'),
+  moduleNameMapper: {
+    '^@/assets/(.*)$': '<rootDir>/assets/$1',
+    ...jestExpoPreset.moduleNameMapper,
+  },
   transform: {
     ...jestExpoPreset.transform,
     '^.+\\.css$': require.resolve('jest-expo/src/preset/assetFileTransformer.js'),
